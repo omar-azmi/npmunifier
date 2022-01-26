@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "npmunifier"
+version = "0.1.0"
+description = "Use and configure npm, or any node package manager, from a python codebase"
+authors = ["Omar Azmi <64020006+omar-azmi@users.noreply.github.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+tomlkit = "^0.8.0"
+Jinja2 = "^3.0.3"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
