@@ -27,3 +27,15 @@ See `package.toml` for an example of what a `package.json` would look like in a 
 - think of a better name
 - turn this into a poetry plugin?
 - have its own section in `pyproject.toml` under `npmunifier` that will set things up when `NPMUnifier.init_project(path_to_pyproject)` is called
+- ability to parse and append `package.json` to `pypackage.toml`
+- think of a way to make the `pyproject.toml` a valid toml file with jinja's `{% ... %}` macro templating symbols, without just wrapping the templating block inside of a string.
+- fyi: jinja's `{{ ... }}` variable templating symbols will need to be wrapped over double-qoutes, if you with for the variable to get interpreted as a string in the toml file. ie:
+```
+#script.py
+var_first_name = "Person"
+jinja_export(var_first_name)
+
+#pyproject.toml
+[project]
+author.first_name = "{{ var_first_name }}" # -> author.first_name = "Person"
+```
