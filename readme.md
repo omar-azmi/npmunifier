@@ -3,6 +3,27 @@ You can also configure `package.json` from within your `pyproject.toml`, making 
 Moreover, you can use jinja templating on your `pyproject.toml` to share variables between the python portion of `pyproject.toml` and `packagejson` portion
 See `package.toml` for an example of what a `package.json` would look like in a toml file
 
+### Usage example
+```python
+from npmunifier import NodeProject
+NodeProject() # => read pyproject.toml and interpret the initialization location and build `package.json` from the `packagejson` portion of the toml
+NodeProject(
+	pkgdir: Path = "./path/to/initialize/npm/",
+	packagejson: json | Path | None = None
+	#	json string => use this json string as the contents of package.json
+	#	Path => load the provided file path as a json and use it as packagejson
+	#	None => load Path(pkgdir, "package.json") file as packagejson
+	packagejson_location: "mem" | "temp" | "file"
+	#where to save the packagejson to?
+	#	"mem" => save inside of memory (RAM)
+	#	"temp" => save as a temp file that will destruct once the python process has terminated
+	#	"file" => save as file that will remain in your hard disk even after this python process has terminated
+)
+TomlNodeProject(toml_path: Path = "./pyproject.toml")
+nodeproject_from_toml(toml_path, packagejson_key = "packagejson")
+init_nodeproject = nodeproject_from_toml("./pyproject.toml", "packagejson")
+```
+
 ### FAQ
 - will this support automatic creation and handling of multiple (in-memory) `package.json` files from within one `pyproject.toml`?
   ie: can I have:
